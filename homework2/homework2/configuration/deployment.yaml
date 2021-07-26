@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homework-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: homework-app
+  template:
+    metadata:
+      labels:
+        app: homework-app
+    spec:
+      containers:
+        - name: homework
+          image: gigi0907/homework2:latest
+          env:
+            - name: deployment.yaml
+              value: "8000"
+            - name: spring.datasource.url
+              value: "jdbc:postgresql://postgres:5432/TestDB"
+            - name: spring.datasource.username
+              value: "postgres"
+            - name: spring.datasource.password
+              value: "postgres"
+            - name: spring.datasource.initialization-mode
+              value: "always"
+            - name: spring.jpa.show-sql
+              value: "true"
+            - name: spring.spring.jpa.hibernate.ddl-auto
+              value: "none"
+            - name: spring.liquibase.change-log
+              value: "changelog.xml"
+            - name: spring.liquibase.default-schema
+              value: "public"
+            - name: spring.liquibase.enabled
+              value: "false"
+          ports:
+            - name: web
+              containerPort: 8000

@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ include "homeworkhelm.fullname" . }}
+  labels:
+    {{- include "homeworkhelm.labels" . | nindent 4 }}
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+    - host: arch.homework
+      http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: {{ include "homeworkhelm.fullname" . }}
+              servicePort: {{ .Values.service.port }}
+
+
