@@ -11,9 +11,10 @@
 				"method": "POST",
 				"header": [
 					{
-						"key": "Host",
-						"value": "arch.homework",
-						"type": "text"
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"body": {
@@ -46,9 +47,10 @@
 				"method": "PUT",
 				"header": [
 					{
-						"key": "Host",
-						"value": "arch.homework",
-						"type": "text"
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"body": {
@@ -82,9 +84,10 @@
 				"method": "DELETE",
 				"header": [
 					{
-						"key": "Host",
-						"value": "arch.homework",
-						"type": "text"
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"url": {
