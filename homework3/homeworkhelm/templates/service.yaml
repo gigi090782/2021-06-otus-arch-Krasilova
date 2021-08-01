@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "homeworkhelm.fullname" . }}
+  labels:
+    {{- include "homeworkhelm.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: web
+  selector:
+    {{- include "homeworkhelm.selectorLabels" . | nindent 4 }}

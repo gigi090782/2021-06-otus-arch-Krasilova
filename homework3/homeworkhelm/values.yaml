@@ -1,0 +1,14 @@
+replicaCount: 3
+
+image: "gigi0907/homework2:latest"
+
+service:
+  type: NodePort
+  port: 8000
+
+externalPostgresql:
+  postgresqlDatabase: TestDB
+
+metrics:
+  serviceMonitor:
+    enabled: true

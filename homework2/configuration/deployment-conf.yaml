@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homework-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: homework-app
+  template:
+    metadata:
+      labels:
+        app: homework-app
+    spec:
+      containers:
+        - name: homework
+          image: gigi0907/homework2:latest
+          envFrom:
+            - configMapRef:
+                name: homework-config
+            - secretRef:
+                name: homework-secret
+          ports:
+            - name: web
+              containerPort: 8000

@@ -1,0 +1,17 @@
+server:
+  port: 8000
+
+spring:
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/TestDB"
+    username: "postgres"
+    password: "postgres"
+    initialization-mode: always
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  liquibase:
+    change-log: changelog.xml
+    default-schema: "public"
+    enabled: false
