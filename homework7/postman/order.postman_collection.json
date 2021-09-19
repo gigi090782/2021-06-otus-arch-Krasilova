@@ -1,0 +1,248 @@
+{
+  "info": {
+    "_postman_id": "778854c2-3a6e-4d43-a3d7-df999e3cc744",
+    "name": "Order service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Получаем текущую версию",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.response.to.have.status(200)",
+              "",
+              "var jsonData = pm.response.json();",
+              "pm.collectionVariables.set(\"version\",jsonData)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/version",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "version"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Создание заказа",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "b85be0b7-03b3-4abd-9895-9662dfed7118",
+            "exec": [
+              "pm.response.to.have.status(201)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-request-id",
+            "value": "{{version}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"user_id\": \"1\",\n\t\"number\": \"1\", \n\t\"price\": \"111\"}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/order",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "order"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Получаем текущую версию",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.response.to.have.status(200)",
+              "",
+              "var jsonData = pm.response.json();",
+              "pm.collectionVariables.set(\"version\",jsonData)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/version",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "version"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Создание нового заказа",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "a22d2a5b-fc4c-4787-b128-7b9dbab942ac",
+            "exec": [
+              "pm.response.to.have.status(201)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-request-id",
+            "value": "{{version}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"user_id\": \"1\",\n\t\"number\": \"1AB\", \n\t\"price\": \"222\"}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/order",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "order"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Попытка создания повторного заказа",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.response.to.have.status(400)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-request-id",
+            "value": "{{version}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"user_id\": \"1\",\n\t\"number\": \"1AB\", \n\t\"price\": \"222\"}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/order",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "order"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Получение списка заказов",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.response.to.have.status(200)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/orders",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "id": "59560b2d-6ad5-4f5f-ba41-2323d85f854b",
+      "key": "baseUrl",
+      "value": "http://arch.homework",
+      "type": "string"
+    },
+    {
+      "id": "59560b2d-6ad5-4f5f-ba41-2323d85f854c",
+      "key": "version",
+      "value": "0",
+      "type": "string"
+    }
+  ],
+  "protocolProfileBehavior": {}
+}

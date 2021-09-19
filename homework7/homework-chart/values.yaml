@@ -1,0 +1,19 @@
+replicaCount: 1
+
+fullnameOverride: "order-service"
+
+image: "order-service:latest"
+
+service:
+  type: NodePort
+  port: 8000
+
+externalPostgresql:
+  postgresqlDatabase: TestDB
+
+
+ingress:
+  enabled: true
+  hosts:
+    - host: arch.homework
+      paths: ["/"]
